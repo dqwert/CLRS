@@ -1,0 +1,4 @@
+a.out
+*.tmp
+*.gch
+.DS_Store
