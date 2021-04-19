@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 
 #include "sorting.hpp"
@@ -13,35 +12,33 @@ using namespace std;
  */
 
 void insertion_sort(vector<int> & N) {
+  print_debug_info(__func__, N);
 
-#ifndef NDEBUG
-    print_debug_info(__func__, N);
-#endif
+  for (int j = 1; j < N.size(); ++j) {
+    int key = N[j];
+    int i = j - 1;
+    while (i >= 0 && N[i] > key) {
+      N[i + 1] = N[i];
+      --i;
 
-    for (int j = 1; j < N.size(); ++j) {
-        int key = N[j];
-        int i = j - 1;
-        while (i >= 0 && N[i] > key) {
-            N[i + 1] = N[i];
-            --i;
-        }
-        N[i + 1] = key;
+      print_debug_info(__func__, N);
     }
+    N[i + 1] = key;
+  }
 }
 
-void insertion_sort_nonincresing(vector<int> & N) {
+void insertion_sort_non_increasing(vector<int> & N) {
+  print_debug_info(__func__, N);
 
-#ifndef NDEBUG
-    print_debug_info(__func__, N);
-#endif
+  for (int j = 1; j < N.size(); ++j) {
+    int key = N[j];
+    int i = j - 1;
+    while (i >= 0 && N[i] < key) {
+      N[i + 1] = N[i];
+      --i;
 
-    for (int j = 1; j < N.size(); ++j) {
-        int key = N[j];
-        int i = j - 1;
-        while (i >= 0 && N[i] < key) {
-            N[i + 1] = N[i];
-            --i;
-        }
-        N[i + 1] = key;
+      print_debug_info(__func__, N);
     }
+    N[i + 1] = key;
+  }
 }
