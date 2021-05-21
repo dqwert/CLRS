@@ -85,3 +85,32 @@ int cut_rod_top_down_bottom_up_extended(const std::vector<int> & price, int leng
 
   return revenue[length];
 }
+
+int cut_rod_top_down_cost(const std::vector<int> & price, int length, int cost) {
+  std::vector<int> revenue(price.size() + 1, INT_MIN);
+  revenue[0] = 0;
+
+  for (int len = 1; len <= length; ++len) {
+    int profit = INT_MIN;
+    for (int cut = 1; cut <= len; ++cut) {
+#ifndef NDEBUG
+      printf("len=%d, cut=%d, price of cut=%d, revenue of rest=%d;\n", len, cut, price[cut - 1], revenue[len - cut]);
+#endif
+      profit = std::max(profit, price[cut - 1] + revenue[len - cut] - cost);
+    }
+    revenue[len] = profit;
+  }
+  return revenue[length];
+}
+
+int fibonacci(int n) {
+  if (n == 0) { return 0; }
+  int a = 0, b = 1, c = -1;
+  while (n > 1) {
+    c = a + b;
+    a = b;
+    b = c;
+    --n;
+  }
+  return b;
+}
